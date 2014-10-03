@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TableViewController: UIViewController, UITableViewDelegate {
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -37,7 +37,6 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let tableView = UITableView(frame: CGRect(x: 20, y: 100, width: 280, height: 400), style: .Plain)
         tableView.delegate = self
-        tableView.dataSource = self
         self.view.addSubview(tableView)
 
     }
@@ -55,14 +54,13 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier:"identifier")
         }
-        
-        cell?.textLabel.text = "This is row number \(indexPath.row+1)"
+        cell?.textLabel?.text = "This is row number \(indexPath.row+1)"
         if indexPath.row % 2 == 0 {
-            cell?.imageView.image = UIImage(named: "won.png")
-            cell?.textLabel.textColor = UIColor.greenColor()
+            cell?.imageView?.image = UIImage(named: "won.png")
+            cell?.textLabel?.textColor = UIColor.greenColor()
         }else {
-            cell?.imageView.image = UIImage(named: "lost.png")
-            cell?.textLabel.textColor = UIColor.redColor()
+            cell?.imageView?.image = UIImage(named: "lost.png")
+            cell?.textLabel?.textColor = UIColor.redColor()
         }
         return cell
     }

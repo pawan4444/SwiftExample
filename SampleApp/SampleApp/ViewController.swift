@@ -124,7 +124,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func nextButton_Action(sender: UIButton){
 
         let nextVC = TableViewController()
-        self.navigationController.pushViewController(nextVC, animated: true)
+        self.navigationController?.pushViewController(nextVC, animated: true);
     }
     
     // MARK: - UISegmentedController Action -
