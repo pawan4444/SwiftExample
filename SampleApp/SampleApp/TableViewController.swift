@@ -3,12 +3,12 @@
 //  myToDos
 //
 //  Created by Pawan Kumar Singh on 26/08/14.
-//  Copyright (c) 2014 Genwi Inc. All rights reserved.
+//  Copyright (c) 2014 Pawan Kumar Singh. All rights reserved.
 //
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate {
+class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -37,32 +37,32 @@ class TableViewController: UIViewController, UITableViewDelegate {
         
         let tableView = UITableView(frame: CGRect(x: 20, y: 100, width: 280, height: 400), style: .Plain)
         tableView.delegate = self
+        tableView.dataSource = self
         self.view.addSubview(tableView)
 
     }
 
     // MARK: - UITableViewDataSource -
-    
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 10
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = tableView.dequeueReusableCellWithIdentifier("identifier") as? UITableViewCell
         if cell == nil {
             cell = UITableViewCell(style: .Default, reuseIdentifier:"identifier")
         }
-        cell?.textLabel?.text = "This is row number \(indexPath.row+1)"
+        cell?.textLabel.text = "This is row number \(indexPath.row+1)"
         if indexPath.row % 2 == 0 {
-            cell?.imageView?.image = UIImage(named: "won.png")
-            cell?.textLabel?.textColor = UIColor.greenColor()
+            cell?.imageView.image = UIImage(named: "won.png")
+            cell?.textLabel.textColor = UIColor.greenColor()
         }else {
-            cell?.imageView?.image = UIImage(named: "lost.png")
-            cell?.textLabel?.textColor = UIColor.redColor()
+            cell?.imageView.image = UIImage(named: "lost.png")
+            cell?.textLabel.textColor = UIColor.redColor()
         }
-        return cell
+        return cell!
     }
     
     // MARK: - UITableViewDelegate -

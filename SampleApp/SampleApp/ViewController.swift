@@ -3,7 +3,7 @@
 //  myToDos
 //
 //  Created by Pawan Kumar Singh on 02/07/14.
-//  Copyright (c) 2014 Genwi Inc. All rights reserved.
+//  Copyright (c) 2014 Pawan Kumar Singh. All rights reserved.
 //
 
 import UIKit
@@ -50,23 +50,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         scrollview.contentSize = CGSize(width: 280.0, height: 600)
         self.view.addSubview(scrollview)
         
-        //Adding a imageView
+        //Adding a imageView to scrollView
         myImageView = UIImageView(image: UIImage(named: "won.png"))
         myImageView.center = CGPoint(x: scrollview.frame.width/2, y: myImageView.center.y)
         scrollview.addSubview(myImageView)
         
-        //Adding a UISegmentedController
+        //Adding a UISegmentedController to scrollView
         let segmentController: UISegmentedControl = UISegmentedControl(items: ["Won","Lost"])
         segmentController.selectedSegmentIndex = 0
         segmentController.addTarget(self, action: "segmentController_Action:", forControlEvents: .ValueChanged)
         segmentController.center = CGPoint(x: myImageView.center.x, y: 180)
         scrollview.addSubview(segmentController)
 
-        //Adding a date picker
-        let datePicker = UIDatePicker(frame: CGRect(x: -20, y: 200.0, width: 0, height: 0))
-        datePicker.datePickerMode = .Date
-        datePicker.addTarget(self, action: "datePicker_Action:", forControlEvents: .ValueChanged)
-        scrollview.addSubview(datePicker)
+        //Adding a date picker to scrollView
+        //Datepicker code is blocked for the time being, looks like a compiler issue, causing segmentation fault 11
+//        let datePicker = UIDatePicker(frame: CGRect(x: -20, y: 200.0, width: 0, height: 0))
+//        datePicker.datePickerMode = .Date
+//        datePicker.addTarget(self, action: "datePicker_Action:", forControlEvents: .ValueChanged)
+//        scrollview.addSubview(datePicker)
         
         //Adding a slider
         let slider: UISlider = UISlider(frame: CGRect(x: 20.0, y:450.0 , width: 240.0, height: 20.0))
@@ -137,12 +138,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             myImageView.image = UIImage(named: "lost.png")
         }
     }
-    
+
     //MARK: - UIDatePicker Action -
-    func datePicker_Action(sender: UIDatePicker)
-    {
-        //sender.date
-    }
+    // Datepicker code is blocked for the time being, looks like a compiler issue, causing segmentation fault 11    
+//    func datePicker_Action(sender: UIDatePicker)
+//    {
+//        //sender.date
+//    }
     
     //MARK: - UISlider Action -
     
