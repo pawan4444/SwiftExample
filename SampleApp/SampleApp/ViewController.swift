@@ -63,12 +63,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         scrollview.addSubview(segmentController)
 
         //Adding a date picker to scrollView
-        //Datepicker code is blocked for the time being, looks like a compiler issue, causing segmentation fault 11
-//        let datePicker = UIDatePicker(frame: CGRect(x: -20, y: 200.0, width: 0, height: 0))
-//        datePicker.datePickerMode = .Date
-//        datePicker.addTarget(self, action: "datePicker_Action:", forControlEvents: .ValueChanged)
-//        scrollview.addSubview(datePicker)
-        
+        //Bugs with UIDatePicker at Apple library
+        // 1. Datepicker code works well for deployment target 8.1 else causing segmentation fault 11
+        let datePicker = UIDatePicker(frame: CGRect(x: -20.0, y: 200.0, width: 0, height: 0))
+        datePicker.datePickerMode = .Date
+        datePicker.addTarget(self, action: "datePicker_Action:", forControlEvents: .ValueChanged)
+        datePicker.layer.borderWidth = 1.0
+        datePicker.layer.borderColor = UIColor.redColor().CGColor
+        scrollview.addSubview(datePicker)
+
         //Adding a slider
         let slider: UISlider = UISlider(frame: CGRect(x: 20.0, y:450.0 , width: 240.0, height: 20.0))
         slider.minimumValue = 0.0
@@ -140,11 +143,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     //MARK: - UIDatePicker Action -
-    // Datepicker code is blocked for the time being, looks like a compiler issue, causing segmentation fault 11    
-//    func datePicker_Action(sender: UIDatePicker)
-//    {
-//        //sender.date
-//    }
+    // Datepicker code is blocked for the time being, looks like a compiler issue, causing segmentation fault 11
+    func datePicker_Action(sender: UIDatePicker)
+    {
+        //sender.date
+    }
     
     //MARK: - UISlider Action -
     
