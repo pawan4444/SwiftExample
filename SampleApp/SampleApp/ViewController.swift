@@ -1,24 +1,24 @@
 //
 //  ViewController.swift
-//  myToDos
+//  SampleApp
 //
-//  Created by Pawan Kumar Singh on 02/07/14.
-//  Copyright (c) 2014 Pawan Kumar Singh. All rights reserved.
+//  Created by Pawan on 18/12/15.
+//  Copyright © 2015 Pawan Kumar Singh. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    
+
     var helloWorldTxtFld: UITextField!
     var myImageView: UIImageView!
     var myView: UIView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = "First View"
-
+        
         //Adding a label
         let helloWorldLabel = UILabel(frame: CGRect(x: 20, y: 60, width: 280, height: 30))
         helloWorldLabel.text = "Hello World Example Application."
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(helloWorldTxtFld)
         
         //Adding a button
-        let hiButton:UIButton = UIButton.buttonWithType(.Custom) as UIButton
+        let hiButton:UIButton = UIButton(type: .Custom) as UIButton
         hiButton.frame = CGRect(x: 20, y: 140, width: 280, height: 34)
         hiButton.backgroundColor = UIColor(red: 0.0, green: 0.423, blue: 0.87, alpha: 1.0)
         hiButton.setTitle("Touch me, I am Button", forState: .Normal)
@@ -61,7 +61,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         segmentController.addTarget(self, action: "segmentController_Action:", forControlEvents: .ValueChanged)
         segmentController.center = CGPoint(x: myImageView.center.x, y: 180)
         scrollview.addSubview(segmentController)
-
+        
         //Adding a date picker to scrollView
         //Bugs with UIDatePicker at Apple library
         // 1. Datepicker code works well for deployment target 8.1 else causing segmentation fault 11
@@ -71,7 +71,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         datePicker.layer.borderWidth = 1.0
         datePicker.layer.borderColor = UIColor.redColor().CGColor
         scrollview.addSubview(datePicker)
-
+        
         //Adding a slider
         let slider: UISlider = UISlider(frame: CGRect(x: 20.0, y:450.0 , width: 240.0, height: 20.0))
         slider.minimumValue = 0.0
@@ -86,47 +86,47 @@ class ViewController: UIViewController, UITextFieldDelegate {
         scrollview.addSubview(myView)
         
         //Adding a button
-        let nextButton:UIButton = UIButton.buttonWithType(.Custom) as UIButton
+        let nextButton:UIButton = UIButton(type: .Custom) as UIButton
         nextButton.frame = CGRect(x: 20, y: 510, width: 280, height: 34)
         nextButton.backgroundColor = UIColor(red: 1.0, green: 0.423, blue: 0.17, alpha: 1.0)
         nextButton.setTitle("Let's Go to Next Page", forState: .Normal)
         nextButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         nextButton.addTarget(self, action: "nextButton_Action:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(nextButton)
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - UIButton Action -
     func hiButton_Action(sender: UIButton!) {
         
         var title = "Error"
         var message = "Please enter your name in textField"
-        if helloWorldTxtFld.text.isEmpty == false {
+        if helloWorldTxtFld.text!.isEmpty == false {
             title = "Welcome"
-            message = "We are happy to have you here, \(helloWorldTxtFld.text) !"
+            message = "We are happy to have you here, \(helloWorldTxtFld.text!) !"
         }
-
+        
         //First way to show alertView
         let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
         alertView.show()
         
-//        Another way of showing an alert
-//        let alertView = UIAlertView()
-//        alertView.title = title
-//        alertView.message = message
-//        alertView.delegate = nil
-//        alertView.addButtonWithTitle("OK")
-//        alertView.show()
+        //        Another way of showing an alert
+        //        let alertView = UIAlertView()
+        //        alertView.title = title
+        //        alertView.message = message
+        //        alertView.delegate = nil
+        //        alertView.addButtonWithTitle("OK")
+        //        alertView.show()
         
     }
     
     func nextButton_Action(sender: UIButton){
-
+        
         let nextVC = TableViewController()
         self.navigationController?.pushViewController(nextVC, animated: true);
     }
@@ -141,7 +141,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             myImageView.image = UIImage(named: "lost.png")
         }
     }
-
+    
     //MARK: - UIDatePicker Action -
     // Datepicker code is blocked for the time being, looks like a compiler issue, causing segmentation fault 11
     func datePicker_Action(sender: UIDatePicker)
@@ -156,10 +156,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - UITextFieldDelegate -
-    func textFieldShouldReturn(textField: UITextField!) -> Bool
-    {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+
 }
 

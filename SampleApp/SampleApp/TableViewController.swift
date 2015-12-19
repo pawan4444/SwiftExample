@@ -1,9 +1,9 @@
 //
 //  TableViewController.swift
-//  myToDos
+//  SampleApp
 //
-//  Created by Pawan Kumar Singh on 26/08/14.
-//  Copyright (c) 2014 Pawan Kumar Singh. All rights reserved.
+//  Created by Pawan on 18/12/15.
+//  Copyright © 2015 Pawan Kumar Singh. All rights reserved.
 //
 
 import UIKit
@@ -14,11 +14,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    override init() {
-        super.init()
-    }
-
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -26,7 +22,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         self.title = "Table View"
-
+        
         //adding a label
         let helloWorldLabel = UILabel(frame: CGRect(x: 20, y: 60, width: 280, height: 30))
         helloWorldLabel.text = "Screen 2"
@@ -39,42 +35,52 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
-
+        
     }
-
+    
     // MARK: - UITableViewDataSource -
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 10
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        var cell = tableView.dequeueReusableCellWithIdentifier("identifier") as? UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("identifier")
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier:"identifier")
+            cell = UITableViewCell(style: .Default, reuseIdentifier: "identifier")
         }
-        cell?.textLabel.text = "This is row number \(indexPath.row+1)"
+        cell?.textLabel?.text = "This is row number \(indexPath.row+1)"
         if indexPath.row % 2 == 0 {
-            cell?.imageView.image = UIImage(named: "won.png")
-            cell?.textLabel.textColor = UIColor.greenColor()
+            cell?.imageView?.image = UIImage(named: "won.png")
+            cell?.textLabel?.textColor = UIColor.greenColor()
         }else {
-            cell?.imageView.image = UIImage(named: "lost.png")
-            cell?.textLabel.textColor = UIColor.redColor()
+            cell?.imageView?.image = UIImage(named: "lost.png")
+            cell?.textLabel?.textColor = UIColor.greenColor()
         }
+        //        var cell = tableView.dequeueReusableCellWithIdentifier("identifier") as? UITableViewCell
+        //        if cell == nil {
+        //            cell = UITableViewCell(style: .Default, reuseIdentifier: "identifier")
+        //        }
+        //        cell?.textLabel.text = "This is row number \(indexPath.row+1)"
+        //        if indexPath.row % 2 == 0 {
+        //            cell?.imageView.image = UIImage(named: "won.png")
+        //            cell?.textLabel.textColor = UIColor.greenColor()
+        //        }else {
+        //            cell?.imageView.image = UIImage(named: "lost.png")
+        //            cell?.textLabel.textColor = UIColor.redColor()
+        //        }
+        
         return cell!
     }
     
     // MARK: - UITableViewDelegate -
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
-    {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let alertView = UIAlertView()
         alertView.title = ""
         alertView.message = "You have touched row number \(indexPath.row+1)"
         alertView.delegate = nil
         alertView.addButtonWithTitle("OK")
         alertView.show()
-
     }
 
 }
